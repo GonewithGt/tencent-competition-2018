@@ -69,7 +69,7 @@ def batch_predict(data,index):
         try:
             data[feature] = LabelEncoder().fit_transform(data[feature].apply(int))
         except:
-            data[feature] = LabelEncoder().fit_transform(data[feature])
+            data[feature] = LabelEncoder().fit_transform(data[feature].apply(str))
 
     train=data[data.label!=-1]
     train_y=train.pop('label')
