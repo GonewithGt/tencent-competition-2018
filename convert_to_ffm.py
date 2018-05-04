@@ -120,7 +120,7 @@ class FFMFormat:
 
 tr = FFMFormat(vector_feature,one_hot_feature,continus_feature)
 user_ffm=tr.fit_transform(data)
-user_ffm.to_csv('ffm.csv',index=False)
+user_ffm.to_csv(path+'ffm.csv',index=False)
 
 train = pd.read_csv(path + 'train.csv')
 test = pd.read_csv(path+'test1.csv')
@@ -128,9 +128,9 @@ test = pd.read_csv(path+'test1.csv')
 Y = np.array(train.pop('label'))
 len_train=len(train)
 
-with open('ffm.csv') as fin:
-    f_train_out=open('train_ffm.csv','w')
-    f_test_out = open('test_ffm.csv', 'w')
+with open(path+'ffm.csv') as fin:
+    f_train_out=open(path+'train_ffm.csv','w')
+    f_test_out = open(path+'test_ffm.csv', 'w')
     for (i,line) in enumerate(fin):
         if i<len_train:
             f_train_out.write(str(Y[i])+' '+line)
@@ -142,7 +142,7 @@ with open('ffm.csv') as fin:
 import xlearn as xl
 import pandas as pd
 import numpy as np
-path='../data/'
+#path='../data/'
 ffm_model = xl.create_ffm()
 ffm_model.setTrain(path+'train_ffm.csv')
 ffm_model.setTest(path+'test_ffm.csv')
